@@ -33,38 +33,56 @@ class _ContadorPageState extends State<ContadorPage> {
           mainAxisAlignment: MainAxisAlignment.center,
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 30.0,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                conteo = conteo + 1;
-              });
-            },
-            child: Icon(Icons.add),
-          ),
-          SizedBox(
+      floatingActionButton: _crearBotones(),
+    );
+  }
+
+  Widget _crearBotones() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 30.0,
+        ),
+        FloatingActionButton(
+          onPressed: _agregar,
+          child: Icon(Icons.add),
+        ),
+        SizedBox(
+          width: 20.0,
+        ),
+        FloatingActionButton(
+          onPressed: _disminuir,
+          child: Icon(Icons.remove),
+        ),
+        Expanded(
+          child: SizedBox(
             width: 20.0,
           ),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.remove),
-          ),
-          Expanded(
-            child: SizedBox(
-              width: 20.0,
-            ),
-          ),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.exposure_zero),
-          ),
-        ],
-      ),
+        ),
+        FloatingActionButton(
+          onPressed: _pornerEnCero,
+          child: Icon(Icons.exposure_zero),
+        ),
+      ],
     );
+  }
+
+  void _agregar() {
+    setState(() {
+      conteo = conteo + 1;
+    });
+  }
+
+  void _disminuir() {
+    setState(() {
+      conteo--;
+    });
+  }
+
+  void _pornerEnCero() {
+    setState(() {
+      conteo = 0;
+    });
   }
 }
